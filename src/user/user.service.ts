@@ -24,8 +24,8 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async findOne(idUser: number): Promise<User> {
-    return await this.userRepository.findOneBy({ idUser });
+  async findOne(Email: string): Promise<User | undefined> {
+    return this.userRepository.findOneBy({Email});
   }
 
   async update(idUser: number, updateUserDto: UpdateUserDto): Promise<Object> {
@@ -39,4 +39,6 @@ export class UserService {
     }
      return "user not deleted";
   }
+
+  
 }

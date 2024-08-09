@@ -7,6 +7,7 @@ import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
 import { ProductCartModule } from './product-cart/product-cart.module';
 import { SellModule } from './sell/sell.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { SellModule } from './sell/sell.module';
     entities: [__dirname + '/**/**/*.entity.js'],
     synchronize: false,
     })
-  , ClientModule, ProductModule, UserModule, ProductCartModule, SellModule],
+  , ClientModule, ProductModule, ProductCartModule, SellModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

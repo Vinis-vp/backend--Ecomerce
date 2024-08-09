@@ -14,6 +14,9 @@ export class CreateClientDto {
     Name: string;
 
     @IsString()
+    Fone: string;
+
+    @IsString()
     Email: string;
 
     @IsString()
