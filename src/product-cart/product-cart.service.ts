@@ -18,12 +18,12 @@ export class ProductCartService {
     return await this.productCartRepository.find();
   }
 
-  async findOne(Sell_idSell: number): Promise<ProductCart> {
-    return await this.productCartRepository.findOneBy({Sell_idSell});
+  async findOne(sell_idSell: number): Promise<ProductCart> {
+    return await this.productCartRepository.findOneBy({sell_idSell});
   }
 
   async update(updateProductCartDto: UpdateProductCartDto): Promise<ProductCart | string> {    
-    const newProduct =   await this.productCartRepository.update({Product_idProduct: updateProductCartDto.Product_idProduct, Sell_idSell: updateProductCartDto.Sell_idSell }, {Quantity: updateProductCartDto.Quantity});
+    const newProduct =   await this.productCartRepository.update({product_idProduct: updateProductCartDto.product_idProduct, sell_idSell: updateProductCartDto.sell_idSell }, {quantity: updateProductCartDto.quantity});
 
     if(newProduct.affected > 0) {
       return 'cart changed successfully';
@@ -32,8 +32,8 @@ export class ProductCartService {
     }
   }
 
-  async remove(Sell_idSell: number): Promise<string> { 
-    const result = await this.productCartRepository.delete(Sell_idSell);
+  async remove(sell_idSell: number): Promise<string> { 
+    const result = await this.productCartRepository.delete(sell_idSell);
     if (result.affected>=1){
       return "deleted product cart";
     }

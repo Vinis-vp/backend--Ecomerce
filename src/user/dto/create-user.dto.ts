@@ -9,11 +9,11 @@ export class CreateUserDto {
     idUser: number;
 
     @IsString()
-    Email: string;
+    email: string;
 
     @IsString()
-    Password: string;
+    password: string;
 
     @IsString()
-    SaltPassword: string;
+    saltPassword: string;
 }

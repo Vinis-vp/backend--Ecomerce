@@ -12,9 +12,9 @@ export class CreateSellDto {
     idClient: number
 
     @IsDate()
-    SellDate: Date;
+    sellDate: Date;
 
     @IsString()
-    PaymentMethod: string;
+    paymentMethod: string;
     
 }

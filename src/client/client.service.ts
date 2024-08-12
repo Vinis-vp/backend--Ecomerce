@@ -12,9 +12,9 @@ export class ClientService {
   
   async create(createClientDto: CreateClientDto): Promise<Client> {
     const salt = await bcrypt.genSalt(10)
-    const hashPassword = await bcrypt.hash(createClientDto.Password, salt);
-    createClientDto.SaltPassword = salt;
-    createClientDto.Password = hashPassword;
+    const hashPassword = await bcrypt.hash(createClientDto.password, salt);
+    createClientDto.saltPassword = salt;
+    createClientDto.password = hashPassword;
 
     const client = await this.clientRepository.create(createClientDto);
     return this.clientRepository.save(client);

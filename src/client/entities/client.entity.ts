@@ -6,25 +6,25 @@ export class Client {
     idClient: number;
 
     @Column({ type: 'varchar', length:80})
-    SocialName: string;
+    socialName: string;
 
     @Column({ type: 'varchar', length:80})
-    Name: string;
+    name: string;
 
     @Column({ type: 'varchar', length:15})
-    Fone: string;
+    fone: string;
 
     @Column({ type: 'varchar', length:60})
-    Email: string;
+    email: string;
 
     @Column({ type: 'varchar', length:255})
-    Password: string;
+    password: string;
 
     @Column({ type: 'varchar', length:255})
-    SaltPassword: string;
+    saltPassword: string;
 
     @Column({ type: 'date'})
-    BirthDate: Date;
+    birthDate: Date;
 
     @Column({ type: 'varchar', length: 11})
     CPF: string;
@@ -36,17 +36,17 @@ export class Client {
     ST: string;
 
     @Column({ type: 'varchar', length: 60})
-    City: string;
+    city: string;
 
     @Column({ type: 'varchar', length: 100})
-    Neighborhood: string;
+    neighborhood: string;
 
     @Column({ type: 'varchar', length: 60})
-    Complement: string;
+    complement: string;
 
     @Column({ type: 'varchar', length: 15})
-    Number: string;
+    number: string;
 
     @Column({ type: 'varchar', length: 80})
-    Street: string;
+    street: string;
 }

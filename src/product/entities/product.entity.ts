@@ -6,14 +6,14 @@ export class Product {
     idProduct: number;
 
     @Column({ type: 'varchar', length:255})
-    Desc: string;
+    desc: string;
 
-    @Column({ type: 'varchar', length:45})
-    Title: string;
+    @Column({ type: 'float', width:45})
+    discountedPrice: number;
 
     @Column({ type: 'float', width:10})
-    Price: number;
+    price: number;
 
     @Column({ type: 'longtext'})
-    Img: string;
+    img: string;
 }

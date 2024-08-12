@@ -6,11 +6,11 @@ export class User {
     idUser: number;
 
     @Column('varchar', {length:60})
-    Email: string;
+    email: string;
 
     @Column('varchar', {length:255})
-    Password: string;
+    password: string;
 
     @Column('varchar', {length:255})
-    SaltPassword: string;
+    saltPassword: string;
 };

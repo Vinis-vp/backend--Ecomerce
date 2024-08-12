@@ -12,6 +12,6 @@ export class Sell {
     sellDate: Date;
 
     @Column('varchar', {length:45})
-    PaymentMethod: string
+    paymentMethod: string
 
 }

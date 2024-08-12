@@ -12,9 +12,9 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto): Promise<User>{
     const salt = await bcrypt.genSalt(10)
-    const hashPassword = await bcrypt.hash(createUserDto.Password, salt);
-    createUserDto.SaltPassword = salt;
-    createUserDto.Password = hashPassword;
+    const hashPassword = await bcrypt.hash(createUserDto.password, salt);
+    createUserDto.saltPassword = salt;
+    createUserDto.password = hashPassword;
 
     const user = await this.userRepository.create(createUserDto);
     return this.userRepository.save(user);
@@ -24,8 +24,8 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async findOne(Email: string): Promise<User | undefined> {
-    return this.userRepository.findOneBy({Email});
+  async findOne(email: string): Promise<User | undefined> {
+    return this.userRepository.findOneBy({email});
   }
 
   async update(idUser: number, updateUserDto: UpdateUserDto): Promise<Object> {

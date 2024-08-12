@@ -12,8 +12,8 @@ export class AuthService {
     
     async signIn(email: string, password: string): Promise<any> {
         const user = await this.userService.findOne(email);
-        if (user && bcrypt.compareSync(password, user.Password)) {
-            const { Password,SaltPassword, ...result } = user;
+        if (user && bcrypt.compareSync(password, user.password)) {
+            const { password,saltPassword, ...result } = user;
             return result;
         }
         return null;

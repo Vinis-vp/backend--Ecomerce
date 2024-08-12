@@ -8,16 +8,17 @@ export class CreateProductDto {
     idProduct: number;
 
     @IsString()
-    Desc: string;
+    desc: string;
 
     @IsString()
-    Title: string;
+    @Type(() => Number)
+    discountedPrice: number;
 
     @IsNumber()
     @Type(() => Number)
-    Price: number;
+    price: number;
 
     @IsString()
-    Img: string;
+    img: string;
 
 }

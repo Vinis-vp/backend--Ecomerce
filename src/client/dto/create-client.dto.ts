@@ -8,25 +8,25 @@ export class CreateClientDto {
     idClient: number;
 
     @IsString()
-    SocialName: string;
+    socialName: string;
 
     @IsString()
-    Name: string;
+    name: string;
 
     @IsString()
-    Fone: string;
+    fone: string;
 
     @IsString()
-    Email: string;
+    email: string;
 
     @IsString()
-    Password: string;
+    password: string;
 
     @IsString()
-    SaltPassword: string;
+    saltPassword: string;
 
     @IsDate()
-    BirthDate: Date;
+    birthDate: Date;
 
     @IsString()
     CPF: string;
@@ -38,18 +38,18 @@ export class CreateClientDto {
     ST: string;
 
     @IsString()
-    City: string;
+    city: string;
 
     @IsString()
-    Neighborhood: string;
+    neighborhood: string;
 
     @IsString()
-    Complement: string;
+    complement: string;
 
     @IsString()
-    Number: string;
+    number: string;
 
     @IsString()
-    Street: string;
+    street: string;
     
 }

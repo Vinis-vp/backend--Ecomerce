@@ -5,14 +5,14 @@ export class CreateProductCartDto {
 
     @IsNumber()
     @Type(() => Number)
-    Sell_idSell: number;
+    sell_idSell: number;
 
     @IsNumber()
     @Type(() => Number)
-    Product_idProduct: number;
+    product_idProduct: number;
 
     @IsNumber()
     @Type(() => Number)
-    Quantity: number;
+    quantity: number;
 
 }
