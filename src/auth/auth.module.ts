@@ -6,15 +6,17 @@ import { JwtStrategy } from './jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { LocalStrategy } from './local.strategy';
+import { ClientModule } from 'src/client/client.module';
+import { RolesGuard } from './role.guard';
 
 @Module({
-  imports: [UserModule, PassportModule,
+  imports: [UserModule, PassportModule, ClientModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '3600s' },
     }),
   ],
-  providers: [AuthService, JwtStrategy, LocalStrategy ],
-  exports: [JwtModule, AuthService],
+  providers: [AuthService, JwtStrategy, LocalStrategy, RolesGuard],
+  exports: [JwtModule, AuthService, RolesGuard],
 })
 export class AuthModule {}

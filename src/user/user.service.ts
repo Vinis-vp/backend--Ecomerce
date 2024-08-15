@@ -29,7 +29,13 @@ export class UserService {
   }
 
   async update(idUser: number, updateUserDto: UpdateUserDto): Promise<Object> {
-    return (await this.userRepository.update(idUser, updateUserDto)).raw;
+    const salt = await bcrypt.genSalt(10)
+    const hashPassword = await bcrypt.hash(updateUserDto.password, salt);
+    updateUserDto.saltPassword = salt;
+    updateUserDto.password = hashPassword;
+    
+    const user = await this.userRepository.create(updateUserDto);
+    return this.userRepository.update(idUser, updateUserDto);
   }
 
   async remove(idUser: number): Promise<string>{

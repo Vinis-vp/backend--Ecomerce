@@ -6,9 +6,22 @@ export class CreateProductDto {
     @IsNumber()
     @Type(() => Number)
     idProduct: number;
+    
+    @IsString()
+    category: string;
+
+    @IsString()
+    name: string;
 
     @IsString()
     desc: string;
+
+    @IsNumber()
+    quantityProducts: number;
+
+    @IsNumber()
+    @Type(() => Number)
+    price: number;
 
     @IsString()
     @Type(() => Number)
@@ -16,7 +29,11 @@ export class CreateProductDto {
 
     @IsNumber()
     @Type(() => Number)
-    price: number;
+    numberInstallments: number;
+
+    @IsNumber()
+    @Type(() => Number)
+    valueInstallments: number;
 
     @IsString()
     img: string;

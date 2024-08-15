@@ -4,6 +4,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from 'src/auth/auth.service';
+import { Roles } from 'src/auth/role.decorator';
+import { Role } from 'src/enum/role.enum';
+import { RolesGuard } from 'src/auth/role.guard';
+import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -20,6 +24,8 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Roles(Role.User)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
@@ -30,15 +36,11 @@ export class UserController {
     return this.userService.update(+id, updateUserDto);
   } 
 
-  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
+  @Roles(Role.User)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
   }
 
-  @UseGuards(AuthGuard('local'))
-  @Post('login')
-  async login(@Request() req) {
-    return this.authService.login(req.user);
-  }
 }

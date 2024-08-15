@@ -24,12 +24,21 @@ export class ClientService {
     return await this.clientRepository.find() ;
   }
 
-  async findOne(idClient: number): Promise<Client> {
-    return await this.clientRepository.findOneBy({ idClient});
+  async findOne(email: string): Promise<Client> {
+    return await this.clientRepository.findOneBy({email});
   }
 
-  async update(idClient: number, updateClientDto: UpdateClientDto): Promise<Object> {
-    return (await this.clientRepository.update(idClient, updateClientDto)).raw ;
+  async update(idClient: number, updateClientDto: UpdateClientDto): Promise<string> {
+    const salt = await bcrypt.genSalt(10)
+    const hashPassword = await bcrypt.hash(updateClientDto.password, salt);
+    updateClientDto.saltPassword = salt;
+    updateClientDto.password = hashPassword;
+   
+    const result = await this.clientRepository.update(idClient, updateClientDto)
+    if (result.affected>=1){
+      return "modified client";
+    }
+    return "unmodified client";
   }
 
   async remove(idClient: number): Promise<string> {

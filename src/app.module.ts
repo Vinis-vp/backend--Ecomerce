@@ -21,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
     entities: [__dirname + '/**/**/*.entity.js'],
     synchronize: false,
     })
-  , ClientModule, ProductModule, ProductCartModule, SellModule, AuthModule],
+  , ProductModule, ProductCartModule, SellModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
