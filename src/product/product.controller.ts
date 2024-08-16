@@ -11,18 +11,17 @@ import { Role } from 'src/enum/role.enum';
 
 @Controller('product')
 export class ProductController {
-  constructor(
-    private readonly productService: ProductService,
-    private authService: AuthService,
-  ) {}
+  constructor(private readonly productService: ProductService) {}
 
-  
+  @Roles(Role.User)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);
   }
-  
 
+  @Roles(Role.User, Role.Client)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   findAll() {
     return this.productService.findAll();

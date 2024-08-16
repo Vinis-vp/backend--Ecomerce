@@ -25,7 +25,7 @@ export class SellController {
     return this.sellService.findAll();
   }
 
-  @Roles(Role.User)
+  @Roles(Role.User, Role.Client)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {

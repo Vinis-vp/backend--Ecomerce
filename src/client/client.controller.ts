@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Request, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Request,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -11,14 +21,16 @@ import { Role } from 'src/enum/role.enum';
 
 @Controller('client')
 export class ClientController {
-  constructor(private readonly clientService: ClientService,
-    private authService: AuthService) {}
+  constructor(
+    private readonly clientService: ClientService,
+    private authService: AuthService,
+  ) {}
 
   @Post()
   create(@Body() createClientDto: CreateClientDto) {
     return this.clientService.create(createClientDto);
   }
-  @Roles(Role.Client, Role.User)
+  @Roles(Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   findAll() {
@@ -32,7 +44,7 @@ export class ClientController {
     return this.clientService.findOne(id);
   }
 
-  @Roles(Role.User)
+  @Roles(Role.User, Role.Client)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
@@ -50,5 +62,19 @@ export class ClientController {
   @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
+  }
+
+  @Post('forgetPassword')
+  async generateAndSendResetCode(@Body('CPF') CPF: string) {
+    return this.clientService.generateAndSendResetCode(CPF);
+  }
+
+  @Post('resetPassword')
+  async verifyResetPassword(
+    @Body('CPF') CPF: string,
+    @Body('token') token: number,
+    @Body('newPassword') newPassword: string,
+  ) {
+    return this.clientService.verifyResetPassword(CPF, token, newPassword);
   }
 }

@@ -10,35 +10,35 @@ import { Role } from 'src/enum/role.enum';
 @Controller('productCart')
 export class ProductCartController {
   constructor(private readonly productCartService: ProductCartService) {}
-  
-  @Roles(Role.Client)
+
+  @Roles(Role.Client, Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
   create(@Body() createProductCartDto: CreateProductCartDto) {
     return this.productCartService.create(createProductCartDto);
   }
-  
-  @Roles(Role.User)
+
+  @Roles(Role.Client, Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   findAll() {
     return this.productCartService.findAll();
   }
-  
-  @Roles(Role.User)
+
+  @Roles(Role.Client, Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productCartService.findOne(+id);
   }
-  
-  @Roles(Role.Client)
+
+  @Roles(Role.Client, Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch()
   update(@Body() updateProductCartDto: UpdateProductCartDto) {
     return this.productCartService.update(updateProductCartDto);
   }
- 
+
   @Roles(Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':id')
